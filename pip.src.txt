@@ -1,0 +1,18 @@
+ 驱动器 D 中的卷没有标签。
+ 卷的序列号是 547A-CB19
+
+ D:\download\jupyter-ide\src\Lib\site-packages 的目录
+
+2022/03/03  13:22    <DIR>          .
+2022/03/03  13:22    <DIR>          ..
+2022/03/03  13:22               151 distutils-precedence.pth
+2022/03/03  13:22    <DIR>          pip
+2022/03/03  13:23    <DIR>          pip-22.0.3.dist-info
+2022/03/03  13:22    <DIR>          pkg_resources
+2022/03/03  13:22    <DIR>          setuptools
+2022/03/03  13:22    <DIR>          setuptools-60.9.3.dist-info
+2022/03/03  13:22    <DIR>          wheel
+2022/03/03  13:22    <DIR>          wheel-0.37.1.dist-info
+2022/03/03  13:22    <DIR>          _distutils_hack
+               1 个文件            151 字节
+              10 个目录 215,675,461,632 可用字节
