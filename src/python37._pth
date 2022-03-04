@@ -1,5 +1,6 @@
 python37.zip
-Lib\site-packages
+#Lib\site-packages
+Lib\packages
 .
 
 # Uncomment to run site.main() automatically
