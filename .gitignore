@@ -1,4 +1,6 @@
 .idea
 *.pyc
 __pycache__
-docs
+docs/.ipynb_checkpoints
+
+
