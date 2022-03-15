@@ -94,3 +94,13 @@ theme-light-extension
 
 (TODO) 画出 extension 的依赖关系图。
 
+
+
+# debug 异常
+
+```commandline
+
+It seems the debugger cannot resolve D:\obj\windows-release\37amd64_Release\msi_python\zip_amd64\ntpath.py
+This may make the debugger miss breakpoints in the standard library.
+Related bug: https://bugs.python.org/issue1180193
+```
