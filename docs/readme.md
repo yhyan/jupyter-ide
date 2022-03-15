@@ -33,3 +33,64 @@ src/share/jupyter/lab/static
 实现静态文件的替换。
 
 
+# extension
+
+style.js 中导入的extension
+
+```commandline
+application-extension
+apputils-extension
+celltags-extension
+codemirror-extension
+completer-extension
+console-extension
+csvviewer-extension
+debugger-extension
+docmanager-extension
+docprovider-extension
+documentsearch-extension
+extensionmanager-extension
+filebrowser-extension
+fileeditor-extension
+help-extension
+htmlviewer-extension
+hub-extension
+imageviewer-extension
+inspector-extension
+javascript-extension
+json-extension
+launcher-extension
+logconsole-extension
+mainmenu-extension
+markdownviewer-extension
+mathjax2-extension
+notebook-extension
+pdf-extension
+rendermime-extension
+running-extension
+settingeditor-extension
+statusbar-extension
+terminal-extension
+toc-extension
+tooltip-extension
+translation-extension
+ui-components-extension
+vdom-extension
+vega5-extension
+```
+
+packages 目录中存在的extension
+
+```commandline
+shortcuts-extension
+theme-dark-extension
+theme-light-extension
+
+
+```
+
+
+# extension 依赖关系图
+
+(TODO) 画出 extension 的依赖关系图。
+

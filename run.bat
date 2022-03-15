@@ -1,1 +1,1 @@
-.\src\python.exe -m jupyterlab --notebook-dir=.\docs
+.\src\python.exe -m jupyterlab --autoreload --notebook-dir=.\docs

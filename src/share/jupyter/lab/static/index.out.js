@@ -136,46 +136,6 @@ export async function main() {
 
   // Handle the registered mime extensions.
   const mimeExtensions = [];
-  if (!queuedFederated.includes('@jupyterlab/javascript-extension')) {
-    try {
-      let ext = require('@jupyterlab/javascript-extension');
-      for (let plugin of activePlugins(ext)) {
-        mimeExtensions.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/json-extension')) {
-    try {
-      let ext = require('@jupyterlab/json-extension');
-      for (let plugin of activePlugins(ext)) {
-        mimeExtensions.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/pdf-extension')) {
-    try {
-      let ext = require('@jupyterlab/pdf-extension');
-      for (let plugin of activePlugins(ext)) {
-        mimeExtensions.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/vega5-extension')) {
-    try {
-      let ext = require('@jupyterlab/vega5-extension');
-      for (let plugin of activePlugins(ext)) {
-        mimeExtensions.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
 
   // Add the federated mime extensions.
   const federatedMimeExtensions = await Promise.allSettled(federatedMimeExtensionPromises);
@@ -240,26 +200,6 @@ export async function main() {
       console.error(e);
     }
   }
-  if (!queuedFederated.includes('@jupyterlab/console-extension')) {
-    try {
-      let ext = require('@jupyterlab/console-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/csvviewer-extension')) {
-    try {
-      let ext = require('@jupyterlab/csvviewer-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
   if (!queuedFederated.includes('@jupyterlab/debugger-extension')) {
     try {
       let ext = require('@jupyterlab/debugger-extension');
@@ -300,16 +240,6 @@ export async function main() {
       console.error(e);
     }
   }
-  if (!queuedFederated.includes('@jupyterlab/extensionmanager-extension')) {
-    try {
-      let ext = require('@jupyterlab/extensionmanager-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
   if (!queuedFederated.includes('@jupyterlab/filebrowser-extension')) {
     try {
       let ext = require('@jupyterlab/filebrowser-extension');
@@ -340,29 +270,9 @@ export async function main() {
       console.error(e);
     }
   }
-  if (!queuedFederated.includes('@jupyterlab/htmlviewer-extension')) {
-    try {
-      let ext = require('@jupyterlab/htmlviewer-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
   if (!queuedFederated.includes('@jupyterlab/hub-extension')) {
     try {
       let ext = require('@jupyterlab/hub-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/imageviewer-extension')) {
-    try {
-      let ext = require('@jupyterlab/imageviewer-extension');
       for (let plugin of activePlugins(ext)) {
         register.push(plugin);
       }
@@ -403,26 +313,6 @@ export async function main() {
   if (!queuedFederated.includes('@jupyterlab/mainmenu-extension')) {
     try {
       let ext = require('@jupyterlab/mainmenu-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/markdownviewer-extension')) {
-    try {
-      let ext = require('@jupyterlab/markdownviewer-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/mathjax2-extension')) {
-    try {
-      let ext = require('@jupyterlab/mathjax2-extension');
       for (let plugin of activePlugins(ext)) {
         register.push(plugin);
       }
@@ -490,16 +380,6 @@ export async function main() {
       console.error(e);
     }
   }
-  if (!queuedFederated.includes('@jupyterlab/terminal-extension')) {
-    try {
-      let ext = require('@jupyterlab/terminal-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
   if (!queuedFederated.includes('@jupyterlab/theme-dark-extension')) {
     try {
       let ext = require('@jupyterlab/theme-dark-extension');
@@ -553,16 +433,6 @@ export async function main() {
   if (!queuedFederated.includes('@jupyterlab/ui-components-extension')) {
     try {
       let ext = require('@jupyterlab/ui-components-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  if (!queuedFederated.includes('@jupyterlab/vdom-extension')) {
-    try {
-      let ext = require('@jupyterlab/vdom-extension');
       for (let plugin of activePlugins(ext)) {
         register.push(plugin);
       }

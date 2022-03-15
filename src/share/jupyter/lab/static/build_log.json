@@ -534,24 +534,6 @@
             },
             "codemirror": {
               "requiredVersion": "~5.61.0"
-            },
-            "@lumino/datagrid": {
-              "requiredVersion": "^0.20.0"
-            },
-            "react-highlighter": {
-              "requiredVersion": "^0.4.3"
-            },
-            "react-json-tree": {
-              "requiredVersion": "^0.15.0"
-            },
-            "vega": {
-              "requiredVersion": "^5.20.0"
-            },
-            "vega-embed": {
-              "requiredVersion": "^6.2.1"
-            },
-            "vega-lite": {
-              "requiredVersion": "^5.1.0"
             }
           }
         }
