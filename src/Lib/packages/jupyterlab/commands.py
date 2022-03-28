@@ -339,7 +339,7 @@ class AppOptions(HasTraits):
 
     labextensions_path = List(Unicode(), help='The paths to look in for prebuilt JupyterLab extensions')
 
-    registry = Unicode(help="NPM packages registry URL")
+   # registry = Unicode(help="NPM packages registry URL")
 
     splice_source = Bool(False, help="Splice source packages into app directory.")
 
@@ -357,10 +357,10 @@ class AppOptions(HasTraits):
     def _default_core_config(self):
         return CoreConfig()
 
-    @default('registry')
-    def _default_registry(self):
-        config = _yarn_config(self.logger)["yarn config"]
-        return config.get("registry", YARN_DEFAULT_REGISTRY)
+  #  @default('registry')
+  #  def _default_registry(self):
+  #      config = _yarn_config(self.logger)["yarn config"]
+   #     return config.get("registry", YARN_DEFAULT_REGISTRY)
 
 
 def _ensure_options(options):
@@ -597,7 +597,7 @@ class _AppHandler(object):
         self.core_data = deepcopy(options.core_config._data)
         self.labextensions_path = options.labextensions_path
         self.kill_event = options.kill_event
-        self.registry = options.registry
+      #  self.registry = options.registry
 
         # Do this last since it relies on other attributes
         self.info = self._get_app_info()
