@@ -1,1 +1,3 @@
-#!/usr/bin/
+#!/usr/bin/env python
+#coding:utf-8
+

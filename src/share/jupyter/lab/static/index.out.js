@@ -200,6 +200,16 @@ export async function main() {
       console.error(e);
     }
   }
+  if (!queuedFederated.includes('@jupyterlab/console-extension')) {
+    try {
+      let ext = require('@jupyterlab/console-extension');
+      for (let plugin of activePlugins(ext)) {
+        register.push(plugin);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
   if (!queuedFederated.includes('@jupyterlab/debugger-extension')) {
     try {
       let ext = require('@jupyterlab/debugger-extension');
