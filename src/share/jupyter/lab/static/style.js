@@ -24,7 +24,6 @@ import '@jupyterlab/rendermime-extension/style/index.js';
 import '@jupyterlab/running-extension/style/index.js';
 import '@jupyterlab/settingeditor-extension/style/index.js';
 import '@jupyterlab/statusbar-extension/style/index.js';
-import '@jupyterlab/toc-extension/style/index.js';
 import '@jupyterlab/tooltip-extension/style/index.js';
 import '@jupyterlab/translation-extension/style/index.js';
 import '@jupyterlab/ui-components-extension/style/index.js';

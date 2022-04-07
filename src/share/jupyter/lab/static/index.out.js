@@ -410,16 +410,6 @@ export async function main() {
       console.error(e);
     }
   }
-  if (!queuedFederated.includes('@jupyterlab/toc-extension')) {
-    try {
-      let ext = require('@jupyterlab/toc-extension');
-      for (let plugin of activePlugins(ext)) {
-        register.push(plugin);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
   if (!queuedFederated.includes('@jupyterlab/tooltip-extension')) {
     try {
       let ext = require('@jupyterlab/tooltip-extension');

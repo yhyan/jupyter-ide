@@ -8,7 +8,7 @@
     "build:dev": "npm run build",
     "build:prod": "webpack --config webpack.prod.config.js",
     "build:prod:minimize": "webpack --config webpack.prod.minimize.config.js",
-    "build:prod:release": "webpack --config webpack.prod.release.config.js",
+    "build:prod:release": "npm run clean && webpack --config webpack.prod.release.config.js",
     "build:prod:stats": "webpack --profile --config webpack.prod.minimize.config.js --json > stats.json",
     "build:stats": "webpack --profile --json > stats.json",
     "clean": "rimraf build",
@@ -232,7 +232,6 @@
       "@jupyterlab/statusbar-extension": "",
       "@jupyterlab/theme-dark-extension": "",
       "@jupyterlab/theme-light-extension": "",
-      "@jupyterlab/toc-extension": "",
       "@jupyterlab/tooltip-extension": "",
       "@jupyterlab/translation-extension": "",
       "@jupyterlab/ui-components-extension": ""

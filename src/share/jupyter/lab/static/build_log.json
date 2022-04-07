@@ -88,26 +88,99 @@
     },
     "resolve": {
       "alias": {
-        "@phosphor/algorithm$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/algorithm/dist/index.js",
-        "@phosphor/application$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/application/dist/index.js",
-        "@phosphor/commands$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/commands/dist/index.js",
-        "@phosphor/coreutils$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/coreutils/dist/index.js",
-        "@phosphor/disposable$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/disposable/dist/index.js",
-        "@phosphor/domutils$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/domutils/dist/index.js",
-        "@phosphor/dragdrop$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/dragdrop/dist/index.js",
-        "@phosphor/dragdrop/style": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/widgets/style",
-        "@phosphor/messaging$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/messaging/dist/index.js",
-        "@phosphor/properties$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/properties/dist/index.js",
-        "@phosphor/signaling": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/signaling/dist/index.js",
-        "@phosphor/widgets/style": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/widgets/style",
-        "@phosphor/virtualdom$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/virtualdom/dist/index.js",
-        "@phosphor/widgets$": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@lumino/widgets/dist/index.js"
+        "@phosphor/algorithm$": "/home/yhyan/jupyterlab/node_modules/@lumino/algorithm/dist/index.js",
+        "@phosphor/application$": "/home/yhyan/jupyterlab/node_modules/@lumino/application/dist/index.js",
+        "@phosphor/commands$": "/home/yhyan/jupyterlab/node_modules/@lumino/commands/dist/index.js",
+        "@phosphor/coreutils$": "/home/yhyan/jupyterlab/node_modules/@lumino/coreutils/dist/index.js",
+        "@phosphor/disposable$": "/home/yhyan/jupyterlab/node_modules/@lumino/disposable/dist/index.js",
+        "@phosphor/domutils$": "/home/yhyan/jupyterlab/node_modules/@lumino/domutils/dist/index.js",
+        "@phosphor/dragdrop$": "/home/yhyan/jupyterlab/node_modules/@lumino/dragdrop/dist/index.js",
+        "@phosphor/dragdrop/style": "/home/yhyan/jupyterlab/node_modules/@lumino/widgets/style",
+        "@phosphor/messaging$": "/home/yhyan/jupyterlab/node_modules/@lumino/messaging/dist/index.js",
+        "@phosphor/properties$": "/home/yhyan/jupyterlab/node_modules/@lumino/properties/dist/index.js",
+        "@phosphor/signaling": "/home/yhyan/jupyterlab/node_modules/@lumino/signaling/dist/index.js",
+        "@phosphor/widgets/style": "/home/yhyan/jupyterlab/node_modules/@lumino/widgets/style",
+        "@phosphor/virtualdom$": "/home/yhyan/jupyterlab/node_modules/@lumino/virtualdom/dist/index.js",
+        "@phosphor/widgets$": "/home/yhyan/jupyterlab/node_modules/@lumino/widgets/dist/index.js",
+        "@jupyterlab/application$": "/home/yhyan/jupyterlab/packages/application/lib/index.js",
+        "@jupyterlab/application-extension$": "/home/yhyan/jupyterlab/packages/application-extension/lib/index.js",
+        "@jupyterlab/apputils$": "/home/yhyan/jupyterlab/packages/apputils/lib/index.js",
+        "@jupyterlab/apputils-extension$": "/home/yhyan/jupyterlab/packages/apputils-extension/lib/index.js",
+        "@jupyterlab/attachments$": "/home/yhyan/jupyterlab/packages/attachments/lib/index.js",
+        "@jupyterlab/cells$": "/home/yhyan/jupyterlab/packages/cells/lib/index.js",
+        "@jupyterlab/celltags$": "/home/yhyan/jupyterlab/packages/celltags/lib/index.js",
+        "@jupyterlab/celltags-extension$": "/home/yhyan/jupyterlab/packages/celltags-extension/lib/index.js",
+        "@jupyterlab/codeeditor$": "/home/yhyan/jupyterlab/packages/codeeditor/lib/index.js",
+        "@jupyterlab/codemirror$": "/home/yhyan/jupyterlab/packages/codemirror/lib/index.js",
+        "@jupyterlab/codemirror-extension$": "/home/yhyan/jupyterlab/packages/codemirror-extension/lib/index.js",
+        "@jupyterlab/completer$": "/home/yhyan/jupyterlab/packages/completer/lib/index.js",
+        "@jupyterlab/completer-extension$": "/home/yhyan/jupyterlab/packages/completer-extension/lib/index.js",
+        "@jupyterlab/console$": "/home/yhyan/jupyterlab/packages/console/lib/index.js",
+        "@jupyterlab/console-extension$": "/home/yhyan/jupyterlab/packages/console-extension/lib/index.js",
+        "@jupyterlab/coreutils$": "/home/yhyan/jupyterlab/packages/coreutils/lib/index.js",
+        "@jupyterlab/debugger$": "/home/yhyan/jupyterlab/packages/debugger/lib/index.js",
+        "@jupyterlab/debugger-extension$": "/home/yhyan/jupyterlab/packages/debugger-extension/lib/index.js",
+        "@jupyterlab/docmanager$": "/home/yhyan/jupyterlab/packages/docmanager/lib/index.js",
+        "@jupyterlab/docmanager-extension$": "/home/yhyan/jupyterlab/packages/docmanager-extension/lib/index.js",
+        "@jupyterlab/docprovider$": "/home/yhyan/jupyterlab/packages/docprovider/lib/index.js",
+        "@jupyterlab/docprovider-extension$": "/home/yhyan/jupyterlab/packages/docprovider-extension/lib/index.js",
+        "@jupyterlab/docregistry$": "/home/yhyan/jupyterlab/packages/docregistry/lib/index.js",
+        "@jupyterlab/documentsearch$": "/home/yhyan/jupyterlab/packages/documentsearch/lib/index.js",
+        "@jupyterlab/documentsearch-extension$": "/home/yhyan/jupyterlab/packages/documentsearch-extension/lib/index.js",
+        "@jupyterlab/filebrowser$": "/home/yhyan/jupyterlab/packages/filebrowser/lib/index.js",
+        "@jupyterlab/filebrowser-extension$": "/home/yhyan/jupyterlab/packages/filebrowser-extension/lib/index.js",
+        "@jupyterlab/fileeditor$": "/home/yhyan/jupyterlab/packages/fileeditor/lib/index.js",
+        "@jupyterlab/fileeditor-extension$": "/home/yhyan/jupyterlab/packages/fileeditor-extension/lib/index.js",
+        "@jupyterlab/help-extension$": "/home/yhyan/jupyterlab/packages/help-extension/lib/index.js",
+        "@jupyterlab/htmlviewer$": "/home/yhyan/jupyterlab/packages/htmlviewer/lib/index.js",
+        "@jupyterlab/htmlviewer-extension$": "/home/yhyan/jupyterlab/packages/htmlviewer-extension/lib/index.js",
+        "@jupyterlab/hub-extension$": "/home/yhyan/jupyterlab/packages/hub-extension/lib/index.js",
+        "@jupyterlab/imageviewer$": "/home/yhyan/jupyterlab/packages/imageviewer/lib/index.js",
+        "@jupyterlab/imageviewer-extension$": "/home/yhyan/jupyterlab/packages/imageviewer-extension/lib/index.js",
+        "@jupyterlab/inspector$": "/home/yhyan/jupyterlab/packages/inspector/lib/index.js",
+        "@jupyterlab/inspector-extension$": "/home/yhyan/jupyterlab/packages/inspector-extension/lib/index.js",
+        "@jupyterlab/launcher$": "/home/yhyan/jupyterlab/packages/launcher/lib/index.js",
+        "@jupyterlab/launcher-extension$": "/home/yhyan/jupyterlab/packages/launcher-extension/lib/index.js",
+        "@jupyterlab/logconsole$": "/home/yhyan/jupyterlab/packages/logconsole/lib/index.js",
+        "@jupyterlab/logconsole-extension$": "/home/yhyan/jupyterlab/packages/logconsole-extension/lib/index.js",
+        "@jupyterlab/mainmenu$": "/home/yhyan/jupyterlab/packages/mainmenu/lib/index.js",
+        "@jupyterlab/mainmenu-extension$": "/home/yhyan/jupyterlab/packages/mainmenu-extension/lib/index.js",
+        "@jupyterlab/metapackage$": "/home/yhyan/jupyterlab/packages/metapackage/lib/index.js",
+        "@jupyterlab/nbconvert-css$": "/home/yhyan/jupyterlab/packages/nbconvert-css/style/index.js",
+        "@jupyterlab/nbformat$": "/home/yhyan/jupyterlab/packages/nbformat/lib/index.js",
+        "@jupyterlab/notebook$": "/home/yhyan/jupyterlab/packages/notebook/lib/index.js",
+        "@jupyterlab/notebook-extension$": "/home/yhyan/jupyterlab/packages/notebook-extension/lib/index.js",
+        "@jupyterlab/observables$": "/home/yhyan/jupyterlab/packages/observables/lib/index.js",
+        "@jupyterlab/outputarea$": "/home/yhyan/jupyterlab/packages/outputarea/lib/index.js",
+        "@jupyterlab/property-inspector$": "/home/yhyan/jupyterlab/packages/property-inspector/lib/index.js",
+        "@jupyterlab/rendermime$": "/home/yhyan/jupyterlab/packages/rendermime/lib/index.js",
+        "@jupyterlab/rendermime-extension$": "/home/yhyan/jupyterlab/packages/rendermime-extension/lib/index.js",
+        "@jupyterlab/rendermime-interfaces$": "/home/yhyan/jupyterlab/packages/rendermime-interfaces/lib/index.js",
+        "@jupyterlab/running$": "/home/yhyan/jupyterlab/packages/running/lib/index.js",
+        "@jupyterlab/running-extension$": "/home/yhyan/jupyterlab/packages/running-extension/lib/index.js",
+        "@jupyterlab/services$": "/home/yhyan/jupyterlab/packages/services/lib/index.js",
+        "@jupyterlab/settingeditor$": "/home/yhyan/jupyterlab/packages/settingeditor/lib/index.js",
+        "@jupyterlab/settingeditor-extension$": "/home/yhyan/jupyterlab/packages/settingeditor-extension/lib/index.js",
+        "@jupyterlab/settingregistry$": "/home/yhyan/jupyterlab/packages/settingregistry/lib/index.js",
+        "@jupyterlab/shared-models$": "/home/yhyan/jupyterlab/packages/shared-models/lib/index.js",
+        "@jupyterlab/shortcuts-extension$": "/home/yhyan/jupyterlab/packages/shortcuts-extension/lib/index.js",
+        "@jupyterlab/statedb$": "/home/yhyan/jupyterlab/packages/statedb/lib/index.js",
+        "@jupyterlab/statusbar$": "/home/yhyan/jupyterlab/packages/statusbar/lib/index.js",
+        "@jupyterlab/statusbar-extension$": "/home/yhyan/jupyterlab/packages/statusbar-extension/lib/index.js",
+        "@jupyterlab/theme-dark-extension$": "/home/yhyan/jupyterlab/packages/theme-dark-extension/lib/index.js",
+        "@jupyterlab/theme-light-extension$": "/home/yhyan/jupyterlab/packages/theme-light-extension/lib/index.js",
+        "@jupyterlab/tooltip$": "/home/yhyan/jupyterlab/packages/tooltip/lib/index.js",
+        "@jupyterlab/tooltip-extension$": "/home/yhyan/jupyterlab/packages/tooltip-extension/lib/index.js",
+        "@jupyterlab/translation$": "/home/yhyan/jupyterlab/packages/translation/lib/index.js",
+        "@jupyterlab/translation-extension$": "/home/yhyan/jupyterlab/packages/translation-extension/lib/index.js",
+        "@jupyterlab/ui-components$": "/home/yhyan/jupyterlab/packages/ui-components/lib/index.js",
+        "@jupyterlab/ui-components-extension$": "/home/yhyan/jupyterlab/packages/ui-components-extension/lib/index.js"
       },
       "fallback": {
         "url": false,
         "buffer": false,
-        "path": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/path-browserify/index.js",
-        "process": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/process/browser.js"
+        "path": "/home/yhyan/jupyterlab/node_modules/path-browserify/index.js",
+        "process": "/home/yhyan/jupyterlab/node_modules/process/browser.js"
       }
     },
     "watchOptions": {
@@ -567,7 +640,7 @@
   {
     "mode": "production",
     "entry": {
-      "index": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@jupyterlab/theme-dark-extension/style/theme.css"
+      "index": "/home/yhyan/jupyterlab/packages/theme-dark-extension/style/theme.css"
     },
     "output": {
       "path": "/home/yhyan/jupyterlab/jupyterlab/themes/@jupyterlab/theme-dark-extension",
@@ -579,7 +652,7 @@
         {
           "test": {},
           "use": [
-            "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/mini-css-extract-plugin/dist/loader.js",
+            "/home/yhyan/jupyterlab/node_modules/mini-css-extract-plugin/dist/loader.js",
             "css-loader"
           ]
         },
@@ -624,7 +697,7 @@
   {
     "mode": "production",
     "entry": {
-      "index": "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/@jupyterlab/theme-light-extension/style/theme.css"
+      "index": "/home/yhyan/jupyterlab/packages/theme-light-extension/style/theme.css"
     },
     "output": {
       "path": "/home/yhyan/jupyterlab/jupyterlab/themes/@jupyterlab/theme-light-extension",
@@ -636,7 +709,7 @@
         {
           "test": {},
           "use": [
-            "/home/yhyan/jupyterlab/jupyterlab/staging/node_modules/mini-css-extract-plugin/dist/loader.js",
+            "/home/yhyan/jupyterlab/node_modules/mini-css-extract-plugin/dist/loader.js",
             "css-loader"
           ]
         },
