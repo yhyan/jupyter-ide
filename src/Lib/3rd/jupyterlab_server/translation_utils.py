@@ -87,11 +87,17 @@ def _get_installed_language_pack_locales():
     """
     data = {}
     messages = []
-    for entry_point in entrypoints.get_group_all(JUPYTERLAB_LANGUAGEPACK_ENTRY):
-        try:
-            data[entry_point.name] = os.path.dirname(entry_point.load().__file__)
-        except Exception:
-            messages.append(traceback.format_exc())
+    try:
+        mod = __import__('jupyterlab_language_pack_zh_CN')
+        data['zh_CN'] = os.path.dirname(mod.__file__)
+    except Exception:
+        messages.append(traceback.format_exc())
+
+   # for entry_point in entrypoints.get_group_all(JUPYTERLAB_LANGUAGEPACK_ENTRY):
+   #     try:
+   #         data[entry_point.name] = os.path.dirname(entry_point.load().__file__)
+   #     except Exception:
+   #         messages.append(traceback.format_exc())
 
     message = "\n".join(messages)
     return data, message

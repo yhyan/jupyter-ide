@@ -28,16 +28,10 @@ from .commands import (
 )
 from .coreconfig import CoreConfig
 from .debuglog import DebugLogFileMixin
-from .handlers.build_handler import Builder, BuildHandler, build_path
 from .handlers.error_handler import ErrorHandler
 from .handlers.extension_manager_handler import ExtensionHandler, ExtensionManager, extensions_handler_path
 from .handlers.yjs_echo_ws import YjsEchoWebSocket
 
-# TODO: remove when oldest compatible jupyterlab_server contains license tooling
-try:
-    from jupyterlab_server import LicensesApp
-except ImportError:
-    LicensesApp = None
 
 DEV_NOTE = """You're running JupyterLab from source.
 If you're working on the TypeScript sources of JupyterLab, try running
@@ -421,46 +415,6 @@ class LabWorkspaceApp(JupyterApp):
         self.exit(0)
 
 
-if LicensesApp is not None:
-    class LabLicensesApp(LicensesApp):
-        version = version
-
-        dev_mode = Bool(
-            False,
-            config=True,
-            help="""Whether to start the app in dev mode. Uses the unpublished local
-            JavaScript packages in the `dev_mode` folder.  In this case JupyterLab will
-            show a red stripe at the top of the page.  It can only be used if JupyterLab
-            is installed as `pip install -e .`.
-            """,
-        )
-
-        app_dir = Unicode(
-            "", config=True, help="The app directory for which to show licenses"
-        )
-
-        aliases = {
-            **LicensesApp.aliases,
-            "app-dir": "LabLicensesApp.app_dir",
-        }
-
-        flags = {
-            **LicensesApp.flags,
-            "dev-mode": (
-                {"LabLicensesApp": {"dev_mode": True}},
-                "Start the app in dev mode for running from source.",
-            ),
-        }
-
-        @default('app_dir')
-        def _default_app_dir(self):
-            return get_app_dir()
-
-        @default('static_dir')
-        def _default_static_dir(self):
-            return pjoin(self.app_dir, 'static')
-
-
 aliases = dict(base_aliases)
 aliases.update({
     'ip': 'ServerApp.ip',
@@ -559,11 +513,6 @@ class LabApp(LabServerApp):
         workspaces=(LabWorkspaceApp, LabWorkspaceApp.description.splitlines()[0])
     )
 
-    # TODO: remove when oldest compatible jupyterlab_server contains license tooling
-    if LicensesApp is not None:
-        subcommands.update(
-            licenses=(LabLicensesApp, LabLicensesApp.description.splitlines()[0])
-        )
 
     default_url = Unicode('/lab', config=True,
         help="The default URL to redirect to from `/`")
@@ -617,7 +566,7 @@ class LabApp(LabServerApp):
 
     @default('app_dir')
     def _default_app_dir(self):
-        app_dir = get_app_dir()
+        app_dir = get_app_dir()  # share/jupyter/lab
         if self.core_mode:
             app_dir = HERE
         elif self.dev_mode:
@@ -713,6 +662,10 @@ class LabApp(LabServerApp):
     def initialize_handlers(self):
 
         handlers = []
+        # print("self.core_mode = %s, self.dev_mode = %s" % (self.core_mode, self.dev_mode))
+        # default
+        # self.core_mode = False
+        # self.dev_mode = False
 
         # Set config for Jupyterlab
         page_config = self.serverapp.web_app.settings.setdefault('page_config_data', {})
@@ -731,10 +684,10 @@ class LabApp(LabServerApp):
         self.log.info('JupyterLab extension loaded from %s' % HERE)
         self.log.info('JupyterLab application directory is %s' % self.app_dir)
 
-        build_handler_options = AppOptions(logger=self.log, app_dir=self.app_dir, labextensions_path = self.extra_labextensions_path + self.labextensions_path, splice_source=self.splice_source)
-        builder = Builder(self.core_mode, app_options=build_handler_options)
-        build_handler = (build_path, BuildHandler, {'builder': builder})
-        handlers.append(build_handler)
+        build_handler_options = AppOptions(
+            logger=self.log, app_dir=self.app_dir,
+            labextensions_path=self.extra_labextensions_path + self.labextensions_path,
+            splice_source=self.splice_source)
 
         # Yjs Echo WebSocket handler
         yjs_echo_handler = (r"/api/yjs/(.*)", YjsEchoWebSocket)
