@@ -1,6 +1,6 @@
 Lib\default
-#Lib\site-packages
-Lib\3rd
+Lib\site-packages
+#Lib\3rd
 .
 
 # Uncomment to run site.main() automatically
