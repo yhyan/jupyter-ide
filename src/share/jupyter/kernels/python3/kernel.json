@@ -4,7 +4,9 @@
   "-m",
   "ipykernel_launcher",
   "-f",
-  "{connection_file}"
+  "{connection_file}",
+  "--log-level",
+  "DEBUG"
  ],
  "display_name": "Python 3 (ipykernel)",
  "language": "python",

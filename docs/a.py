@@ -7,3 +7,13 @@ print("world")
 print("!")
 
 print("wo")
+
+
+print('go')
+def func(a, b):
+    print(a)
+    print(b)
+    print(a + b)
+    return a + b
+
+func(3, 4)

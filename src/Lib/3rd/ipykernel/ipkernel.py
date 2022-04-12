@@ -24,14 +24,8 @@ try:
 except ImportError:
     _asyncio_runner = None
 
-try:
-    from IPython.core.completer import (
-        rectify_completions as _rectify_completions,
-        provisionalcompleter as _provisionalcompleter,
-    )
-    _use_experimental_60_completion = True
-except ImportError:
-    _use_experimental_60_completion = False
+
+_use_experimental_60_completion = False
 
 try:
     import debugpy
@@ -410,8 +404,7 @@ class IPythonKernel(KernelBase):
         return reply_content
 
     def do_complete(self, code, cursor_pos):
-        if _use_experimental_60_completion and self.use_experimental_completions:
-            return self._experimental_do_complete(code, cursor_pos)
+
 
         # FIXME: IPython completers currently assume single line,
         # but completion messages give multi-line context

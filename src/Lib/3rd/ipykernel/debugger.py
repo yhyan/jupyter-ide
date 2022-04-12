@@ -367,6 +367,7 @@ class Debugger:
 
     def start(self):
         if not self.debugpy_initialized:
+            self.log.debug('debugpy_initialized')
             tmp_dir = get_tmp_directory()
             if not os.path.exists(tmp_dir):
                 os.makedirs(tmp_dir)
