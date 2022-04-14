@@ -1,0 +1,9 @@
+
+# site-packages
+
+保留 site-packages 目录。
+
+# 20220414
+
+备份，准备开始使用pipe替换进程之间的通信方式。
+

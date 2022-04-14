@@ -16,4 +16,4 @@ def func(a, b):
     print(a + b)
     return a + b
 
-func(3, 4)
+func(4, 5)

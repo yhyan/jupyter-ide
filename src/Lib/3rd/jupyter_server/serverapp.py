@@ -458,23 +458,6 @@ class ServerWebApplication(web.Application):
         return max(sources)
 
 
-class JupyterPasswordApp(JupyterApp):
-    """Set a password for the Jupyter server.
-
-    Setting a password secures the Jupyter server
-    and removes the need for token-based authentication.
-    """
-
-    description = __doc__
-
-    def _config_file_default(self):
-        return os.path.join(self.config_dir, "jupyter_server_config.json")
-
-    def start(self):
-        from jupyter_server.auth.security import set_password
-
-        set_password(config_file=self.config_file)
-        self.log.info("Wrote hashed password to %s" % self.config_file)
 
 
 def shutdown_server(server_info, timeout=5, log=None):
@@ -737,7 +720,6 @@ class ServerApp(JupyterApp):
     subcommands = dict(
         list=(JupyterServerListApp, JupyterServerListApp.description.splitlines()[0]),
         stop=(JupyterServerStopApp, JupyterServerStopApp.description.splitlines()[0]),
-        password=(JupyterPasswordApp, JupyterPasswordApp.description.splitlines()[0]),
         extension=(ServerExtensionApp, ServerExtensionApp.description.splitlines()[0]),
     )
 
