@@ -38,9 +38,10 @@ from packaging.version import Version
 from traitlets import Bool, Dict, HasTraits, Instance, List, Unicode, default
 
 from jupyterlab.coreconfig import CoreConfig
-from jupyterlab.jlpmapp import HERE, YARN_PATH
 from jupyterlab.semver import Range, gt, gte, lt, lte, make_semver
 from jupyterlab._version import __version__
+
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 # The regex for expecting the webpack output.
 WEBPACK_EXPECT = re.compile(r'.*theme-light-extension/style/theme.css')

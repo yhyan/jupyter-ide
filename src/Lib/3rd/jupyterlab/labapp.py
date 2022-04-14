@@ -26,11 +26,9 @@ from .commands import (
     get_user_settings_dir, get_workspaces_dir, pjoin, watch,
     watch_dev
 )
-from .coreconfig import CoreConfig
-from .debuglog import DebugLogFileMixin
+
 from .handlers.error_handler import ErrorHandler
-from .handlers.extension_manager_handler import ExtensionHandler, ExtensionManager, extensions_handler_path
-from .handlers.yjs_echo_ws import YjsEchoWebSocket
+
 
 
 DEV_NOTE = """You're running JupyterLab from source.
@@ -48,28 +46,6 @@ CORE_NOTE = """
 Running the core application with no additional extensions or settings
 """
 
-build_aliases = dict(base_aliases)
-build_aliases['app-dir'] = 'LabBuildApp.app_dir'
-build_aliases['name'] = 'LabBuildApp.name'
-build_aliases['version'] = 'LabBuildApp.version'
-build_aliases['dev-build'] = 'LabBuildApp.dev_build'
-build_aliases['minimize'] = 'LabBuildApp.minimize'
-build_aliases['debug-log-path'] = 'DebugLogFileMixin.debug_log_path'
-
-build_flags = dict(base_flags)
-
-build_flags['dev-build'] = (
-    {'LabBuildApp': {'dev_build': True}},
-    "Build in development mode."
-)
-build_flags['no-minimize'] = (
-    {'LabBuildApp': {'minimize': False}},
-    "Do not minimize a production build."
-)
-build_flags['splice-source'] = (
-    {'LabBuildApp': {'splice_source': True}},
-    "Splice source packages into app directory."
-)
 
 
 version = __version__
@@ -77,159 +53,12 @@ app_version = get_app_version()
 if version != app_version:
     version = '%s (dev), %s (app)' % (__version__, app_version)
 
-buildFailureMsg = """Build failed.
-Troubleshooting: If the build failed due to an out-of-memory error, you
-may be able to fix it by disabling the `dev_build` and/or `minimize` options.
-
-If you are building via the `jupyter lab build` command, you can disable
-these options like so:
-
-jupyter lab build --dev-build=False --minimize=False
-
-You can also disable these options for all JupyterLab builds by adding these
-lines to a Jupyter config file named `jupyter_config.py`:
-
-c.LabBuildApp.minimize = False
-c.LabBuildApp.dev_build = False
-
-If you don't already have a `jupyter_config.py` file, you can create one by
-adding a blank file of that name to any of the Jupyter config directories.
-The config directories can be listed by running:
-
-jupyter --paths
-
-Explanation:
-
-- `dev-build`: This option controls whether a `dev` or a more streamlined
-`production` build is used. This option will default to `False` (i.e., the
-`production` build) for most users. However, if you have any labextensions
-installed from local files, this option will instead default to `True`.
-Explicitly setting `dev-build` to `False` will ensure that the `production`
-build is used in all circumstances.
-
-- `minimize`: This option controls whether your JS bundle is minified
-during the Webpack build, which helps to improve JupyterLab's overall
-performance. However, the minifier plugin used by Webpack is very memory
-intensive, so turning it off may help the build finish successfully in
-low-memory environments.
-"""
-
-class LabBuildApp(JupyterApp, DebugLogFileMixin):
-    version = version
-    description = """
-    Build the JupyterLab application
-
-    The application is built in the JupyterLab app directory in `/staging`.
-    When the build is complete it is put in the JupyterLab app `/static`
-    directory, where it is used to serve the application.
-    """
-    aliases = build_aliases
-    flags = build_flags
-
-    # Not configurable!
-    core_config = Instance(CoreConfig, allow_none=True)
-
-    app_dir = Unicode('', config=True,
-        help="The app directory to build in")
-
-    name = Unicode('JupyterLab', config=True,
-        help="The name of the built application")
-
-    version = Unicode('', config=True,
-        help="The version of the built application")
-
-    dev_build = Bool(None, allow_none=True, config=True,
-        help="Whether to build in dev mode. Defaults to True (dev mode) if there are any locally linked extensions, else defaults to False (production mode).")
-
-    minimize = Bool(True, config=True,
-        help="Whether to minimize a production build (defaults to True).")
-
-    pre_clean = Bool(False, config=True,
-        help="Whether to clean before building (defaults to False)")
-
-    splice_source = Bool(False, config=True,
-        help="Splice source packages into app directory.")
-
-    def start(self):
-        app_dir = self.app_dir or get_app_dir()
-        app_options = AppOptions(
-            app_dir=app_dir, logger=self.log, core_config=self.core_config, splice_source=self.splice_source
-        )
-        self.log.info('JupyterLab %s', version)
-        with self.debug_logging():
-            if self.pre_clean:
-                self.log.info('Cleaning %s' % app_dir)
-                clean(app_options=app_options)
-            self.log.info('Building in %s', app_dir)
-            try:
-                production = None if self.dev_build is None else not self.dev_build
-                build(name=self.name, version=self.version,
-                  app_options=app_options, production = production, minimize=self.minimize)
-            except Exception as e:
-                print(buildFailureMsg)
-                raise e
-
 
 clean_aliases = dict(base_aliases)
 clean_aliases['app-dir'] = 'LabCleanApp.app_dir'
 
 ext_warn_msg = "WARNING: this will delete all of your extensions, which will need to be reinstalled"
 
-clean_flags = dict(base_flags)
-clean_flags['extensions'] = ({'LabCleanApp': {'extensions': True}},
-    'Also delete <app-dir>/extensions.\n%s' % ext_warn_msg)
-clean_flags['settings'] = ({'LabCleanApp': {'settings': True}}, 'Also delete <app-dir>/settings')
-clean_flags['static'] = ({'LabCleanApp': {'static': True}}, 'Also delete <app-dir>/static')
-clean_flags['all'] = ({'LabCleanApp': {'all': True}},
-    'Delete the entire contents of the app directory.\n%s' % ext_warn_msg)
-
-
-class LabCleanAppOptions(AppOptions):
-    extensions = Bool(False)
-    settings = Bool(False)
-    staging = Bool(True)
-    static = Bool(False)
-    all = Bool(False)
-
-
-class LabCleanApp(JupyterApp):
-    version = version
-    description = """
-    Clean the JupyterLab application
-
-    This will clean the app directory by removing the `staging` directories.
-    Optionally, the `extensions`, `settings`, and/or `static` directories,
-    or the entire contents of the app directory, can also be removed.
-    """
-    aliases = clean_aliases
-    flags = clean_flags
-
-    # Not configurable!
-    core_config = Instance(CoreConfig, allow_none=True)
-
-    app_dir = Unicode('', config=True, help='The app directory to clean')
-
-    extensions = Bool(False, config=True,
-        help="Also delete <app-dir>/extensions.\n%s" % ext_warn_msg)
-
-    settings = Bool(False, config=True, help="Also delete <app-dir>/settings")
-
-    static = Bool(False, config=True, help="Also delete <app-dir>/static")
-
-    all = Bool(False, config=True,
-        help="Delete the entire contents of the app directory.\n%s" % ext_warn_msg)
-
-    def start(self):
-        app_options = LabCleanAppOptions(
-            logger=self.log,
-            core_config=self.core_config,
-            app_dir=self.app_dir,
-            extensions=self.extensions,
-            settings=self.settings,
-            static=self.static,
-            all=self.all
-        )
-        clean(app_options=app_options)
 
 
 class LabPathApp(JupyterApp):
@@ -505,8 +334,6 @@ class LabApp(LabServerApp):
     )
 
     subcommands = dict(
-        build=(LabBuildApp, LabBuildApp.description.splitlines()[0]),
-        clean=(LabCleanApp, LabCleanApp.description.splitlines()[0]),
         path=(LabPathApp, LabPathApp.description.splitlines()[0]),
         paths=(LabPathApp, LabPathApp.description.splitlines()[0]),
         workspace=(LabWorkspaceApp, LabWorkspaceApp.description.splitlines()[0]),
@@ -567,10 +394,6 @@ class LabApp(LabServerApp):
     @default('app_dir')
     def _default_app_dir(self):
         app_dir = get_app_dir()  # share/jupyter/lab
-        if self.core_mode:
-            app_dir = HERE
-        elif self.dev_mode:
-            app_dir = DEV_DIR
         return app_dir
 
     @default('app_settings_dir')
@@ -619,40 +442,9 @@ class LabApp(LabServerApp):
         return ''
 
     def initialize_templates(self):
-        # Determine which model to run JupyterLab
-        if self.core_mode or self.app_dir.startswith(HERE):
-            self.core_mode = True
-            self.log.info('Running JupyterLab in core mode')
 
-        if self.dev_mode or self.app_dir.startswith(DEV_DIR):
-            self.dev_mode = True
-            self.log.info('Running JupyterLab in dev mode')
-
-        if self.watch and self.core_mode:
-            self.log.warn('Cannot watch in core mode, did you mean --dev-mode?')
-            self.watch = False
-
-        if self.core_mode and self.dev_mode:
-            self.log.warn('Conflicting modes, choosing dev_mode over core_mode')
-            self.core_mode = False
-
-        # Set the paths based on JupyterLab's mode.
-        if self.dev_mode:
-            dev_static_dir = ujoin(DEV_DIR, 'static')
-            self.static_paths = [dev_static_dir]
-            self.template_paths = [dev_static_dir]
-            if not self.extensions_in_dev_mode:
-                self.labextensions_path = []
-                self.extra_labextensions_path = []
-        elif self.core_mode:
-            dev_static_dir = ujoin(HERE, 'static')
-            self.static_paths = [dev_static_dir]
-            self.template_paths = [dev_static_dir]
-            self.labextensions_path = []
-            self.extra_labextensions_path = []
-        else:
-            self.static_paths = [self.static_dir]
-            self.template_paths = [self.templates_dir]
+        self.static_paths = [self.static_dir]
+        self.template_paths = [self.templates_dir]
 
 
     def initialize_settings(self):
@@ -689,9 +481,6 @@ class LabApp(LabServerApp):
             labextensions_path=self.extra_labextensions_path + self.labextensions_path,
             splice_source=self.splice_source)
 
-        # Yjs Echo WebSocket handler
-        yjs_echo_handler = (r"/api/yjs/(.*)", YjsEchoWebSocket)
-        handlers.append(yjs_echo_handler)
 
         errored = False
 
@@ -721,28 +510,7 @@ class LabApp(LabServerApp):
                 page_config['buildAvailable'] = False
             self.cache_files = False
 
-        if not self.core_mode and not errored:
-            ext_manager = ExtensionManager(app_options=build_handler_options)
-            ext_handler = (
-                extensions_handler_path,
-                ExtensionHandler,
-                {'manager': ext_manager}
-            )
-            handlers.append(ext_handler)
 
-        # If running under JupyterHub, add more metadata.
-        if 'hub_prefix' in self.serverapp.tornado_settings:
-            tornado_settings = self.serverapp.tornado_settings
-            hub_prefix = tornado_settings['hub_prefix']
-            page_config['hubPrefix'] = hub_prefix
-            page_config['hubHost'] = tornado_settings['hub_host']
-            page_config['hubUser'] = tornado_settings['user']
-            page_config['shareUrl'] = ujoin(hub_prefix, 'user-redirect')
-            # Assume the server_name property indicates running JupyterHub 1.0.
-            if hasattr(self.serverapp, 'server_name'):
-                page_config['hubServerName'] = self.serverapp.server_name
-            api_token = os.getenv('JUPYTERHUB_API_TOKEN', '')
-            page_config['token'] = api_token
 
         # Update Jupyter Server's webapp settings with jupyterlab settings.
         self.serverapp.web_app.settings['page_config_data'] = page_config

@@ -3,11 +3,11 @@
 # Distributed under the terms of the Modified BSD License.
 
 import json
+import os.path
 import os.path as osp
 from itertools import filterfalse
 
-from .jlpmapp import HERE
-
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 def pjoin(*args):
     """Join paths to create a real path.
