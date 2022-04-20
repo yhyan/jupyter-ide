@@ -19,5 +19,11 @@ int PythonInit()
 		Py_Initialize();
 		_python_init = 1;
 	}
+
+	const char *MyModuleName = "blah";
+	const char *MyModuleCode = "print('Hello world2!')";
+	PyRun_SimpleString(MyModuleCode);
+	
+
 	return _python_init;
 }
