@@ -574,6 +574,7 @@ class ExtensionApp(JupyterApp):
             )
         # Start the server.
         try:
-            serverapp.start()
+            pass
+           #  serverapp.start()
         except NoStart:
             pass

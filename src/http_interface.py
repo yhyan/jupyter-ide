@@ -16,5 +16,19 @@ app = jupyterlab.labapp.LabApp._instance
 
 #serverapp = app.initialize_server()
 print(app.web_app)
-
+print(app.web_app.default_router)
+print(app.web_app.wildcard_router)
 print(HERE)
+
+
+def http_warpper(req_line, req_header, req_body):
+
+    from tornado.httputil import parse_request_start_line
+
+    # http request:  line, header, blank, body
+    # http response: line, header, blank, body
+
+
+
+
+    return '', '', ''
