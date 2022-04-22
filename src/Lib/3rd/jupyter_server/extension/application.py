@@ -572,11 +572,13 @@ class ExtensionApp(JupyterApp):
                 "{ext_name} is running without loading "
                 "other extensions.".format(ext_name=cls.name)
             )
+
+        import os
+        if os.environ.get("HTTPIFTEST") == "1":
+            return serverapp
+
         # Start the server.
         try:
-            pass
-            # serverapp.start()
+            serverapp.start()
         except NoStart:
             pass
-
-        return serverapp

@@ -1,6 +1,7 @@
 Lib\default
 #Lib\site-packages
 Lib\3rd
+Lib\httpiflib
 .
 
 # Uncomment to run site.main() automatically

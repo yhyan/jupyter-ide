@@ -1,0 +1,51 @@
+re.compile('/terminals/websocket/(\\w+)$'), <class 'jupyter_server.terminal.handlers.TermSocket'>, kwargs={'term_manager': <jupyter_server.terminal.terminalmanager.TerminalManager object at 0x000001FF3E7FDF08>}
+re.compile('/api/terminals$'), <class 'jupyter_server.terminal.api_handlers.TerminalRootHandler'>
+re.compile('/api/terminals/(\\w+)$'), <class 'jupyter_server.terminal.api_handlers.TerminalHandler'>
+re.compile('/(?P<mode>lab|doc)(?P<workspace>/workspaces/[a-zA-Z0-9\\-\\_]+)?(?P<tree>/tree/.*)?$'), <class 'jupyterlab_server.handlers.LabHandler'>, kwargs={'name': 'lab'}
+re.compile('/lab/extensions/(.*)$'), <class 'jupyter_server.base.handlers.FileFindHandler'>, kwargs={'path': ['C:\\Users\\Yahua\\AppData\\Roaming\\jupyter\\labextensions', 'D:\\download\\jupyter-ide\\src\\share\\jupyter\\labextensions', 'C:\\ProgramData\\jupyter\\labextensions'], 'no_cache_paths': ['/']}
+re.compile('/lab/api/settings/?$'), <class 'jupyterlab_server.settings_handler.SettingsHandler'>, kwargs={'name': 'lab', 'app_settings_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/settings', 'schemas_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/schemas', 'settings_dir': 'C:/Users/Yahua/.jupyter/lab/user-settings', 'labextensions_path': ['C:\\Users\\Yahua\\AppData\\Roaming\\jupyter\\labextensions', 'D:\\download\\jupyter-ide\\src\\share\\jupyter\\labextensions', 'C:\\ProgramData\\jupyter\\labextensions']}
+re.compile('/lab/api/settings/(?P<schema_name>.+)$'), <class 'jupyterlab_server.settings_handler.SettingsHandler'>, kwargs={'name': 'lab', 'app_settings_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/settings', 'schemas_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/schemas', 'settings_dir': 'C:/Users/Yahua/.jupyter/lab/user-settings', 'labextensions_path': ['C:\\Users\\Yahua\\AppData\\Roaming\\jupyter\\labextensions', 'D:\\download\\jupyter-ide\\src\\share\\jupyter\\labextensions', 'C:\\ProgramData\\jupyter\\labextensions']}
+re.compile('/lab/api/translations/?$'), <class 'jupyterlab_server.translations_handler.TranslationsHandler'>, kwargs={'app_settings_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/settings', 'schemas_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/schemas', 'settings_dir': 'C:/Users/Yahua/.jupyter/lab/user-settings', 'labextensions_path': ['C:\\Users\\Yahua\\AppData\\Roaming\\jupyter\\labextensions', 'D:\\download\\jupyter-ide\\src\\share\\jupyter\\labextensions', 'C:\\ProgramData\\jupyter\\labextensions']}
+re.compile('/lab/api/translations/(?P<locale>.*)$'), <class 'jupyterlab_server.translations_handler.TranslationsHandler'>, kwargs={'app_settings_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/settings', 'schemas_dir': 'D:/download/jupyter-ide/src/share/jupyter/lab/schemas', 'settings_dir': 'C:/Users/Yahua/.jupyter/lab/user-settings', 'labextensions_path': ['C:\\Users\\Yahua\\AppData\\Roaming\\jupyter\\labextensions', 'D:\\download\\jupyter-ide\\src\\share\\jupyter\\labextensions', 'C:\\ProgramData\\jupyter\\labextensions']}
+re.compile('/lab/api/workspaces/?$'), <class 'jupyterlab_server.workspaces_handler.WorkspacesHandler'>, kwargs={'name': 'lab', 'manager': <jupyterlab_server.workspaces_handler.WorkspacesManager object at 0x000001FF3E81A588>}
+re.compile('/lab/api/workspaces/(?P<space_name>.+)$'), <class 'jupyterlab_server.workspaces_handler.WorkspacesHandler'>, kwargs={'name': 'lab', 'manager': <jupyterlab_server.workspaces_handler.WorkspacesManager object at 0x000001FF3E81A588>}
+re.compile('/lab/api/listings/(.*)$'), <class 'jupyterlab_server.listings_handler.ListingsHandler'>
+re.compile('/lab/api/themes/(.*)$'), <class 'jupyterlab_server.themes_handler.ThemesHandler'>, kwargs={'themes_url': '/lab/api/themes', 'path': 'D:/download/jupyter-ide/src/share/jupyter/lab/themes', 'labextensions_path': ['C:\\Users\\Yahua\\AppData\\Roaming\\jupyter\\labextensions', 'D:\\download\\jupyter-ide\\src\\share\\jupyter\\labextensions', 'C:\\ProgramData\\jupyter\\labextensions'], 'no_cache_paths': ['/']}
+re.compile('/lab/api/licenses/(.*)$'), <class 'jupyterlab_server.licenses_handler.LicensesHandler'>, kwargs={'manager': <jupyterlab_server.licenses_handler.LicensesManager object at 0x000001FF3E81A848>}
+re.compile('/lab/.*$'), <class 'jupyterlab_server.handlers.NotFoundHandler'>, kwargs={'name': 'lab'}
+re.compile('/static/lab/(.*)$'), <class 'jupyter_server.base.handlers.FileFindHandler'>, kwargs={'path': ['D:\\download\\jupyter-ide\\src\\share\\jupyter\\lab\\static']}
+re.compile('/(robots\\.txt)$'), <class 'jupyter_server.base.handlers.FileFindHandler'>, kwargs={'no_cache_paths': ['/static/custom'], 'path': ['D:\\download\\jupyter-ide\\src\\Lib\\3rd\\jupyter_server\\static']}
+re.compile('/(favicon\\.ico)$'), <class 'jupyter_server.base.handlers.FileFindHandler'>, kwargs={'no_cache_paths': ['/static/custom'], 'path': ['D:\\download\\jupyter-ide\\src\\Lib\\3rd\\jupyter_server\\static']}
+re.compile('/static/(.*)$'), <class 'jupyter_server.base.handlers.FileFindHandler'>, kwargs={'no_cache_paths': ['/static/custom'], 'path': ['D:\\download\\jupyter-ide\\src\\Lib\\3rd\\jupyter_server\\static']}
+re.compile('/login$'), <class 'jupyter_server.auth.login.LoginHandler'>
+re.compile('/logout$'), <class 'jupyter_server.auth.logout.LogoutHandler'>
+re.compile('/api/spec.yaml$'), <class 'jupyter_server.services.api.handlers.APISpecHandler'>
+re.compile('/api/status$'), <class 'jupyter_server.services.api.handlers.APIStatusHandler'>
+re.compile('/api/config/(?P<section_name>\\w+)$'), <class 'jupyter_server.services.config.handlers.ConfigHandler'>
+re.compile('/api/contents(?P<path>(?:(?:/[^/]+)+|/?))/checkpoints$'), <class 'jupyter_server.services.contents.handlers.CheckpointsHandler'>
+re.compile('/api/contents(?P<path>(?:(?:/[^/]+)+|/?))/checkpoints/(?P<checkpoint_id>[\\w-]+)$'), <class 'jupyter_server.services.contents.handlers.ModifyCheckpointsHandler'>
+re.compile('/api/contents(?P<path>(?:(?:/[^/]+)+|/?))/trust$'), <class 'jupyter_server.services.contents.handlers.TrustNotebooksHandler'>
+re.compile('/api/contents(?P<path>(?:(?:/[^/]+)+|/?))$'), <class 'jupyter_server.services.contents.handlers.ContentsHandler'>
+re.compile('/api/notebooks/?(.*)$'), <class 'jupyter_server.services.contents.handlers.NotebooksRedirectHandler'>
+re.compile('/api/kernels$'), <class 'jupyter_server.services.kernels.handlers.MainKernelHandler'>
+re.compile('/api/kernels/(?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+)$'), <class 'jupyter_server.services.kernels.handlers.KernelHandler'>
+re.compile('/api/kernels/(?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+)/(?P<action>restart|interrupt)$'), <class 'jupyter_server.services.kernels.handlers.KernelActionHandler'>
+re.compile('/api/kernels/(?P<kernel_id>\\w+-\\w+-\\w+-\\w+-\\w+)/channels$'), <class 'jupyter_server.services.kernels.handlers.ZMQChannelsHandler'>
+re.compile('/kernelspecs/(?P<kernel_name>[\\w\\.\\-%]+)/(?P<path>.*)$'), <class 'jupyter_server.kernelspecs.handlers.KernelSpecResourceHandler'>
+re.compile('/api/kernelspecs$'), <class 'jupyter_server.services.kernelspecs.handlers.MainKernelSpecHandler'>
+re.compile('/api/kernelspecs/(?P<kernel_name>[\\w\\.\\-%]+)$'), <class 'jupyter_server.services.kernelspecs.handlers.KernelSpecHandler'>
+re.compile('/nbconvert/(?P<format>\\w+)$'), <class 'jupyter_server.nbconvert.handlers.NbconvertPostHandler'>
+re.compile('/nbconvert/(?P<format>\\w+)(?P<path>(?:(?:/[^/]+)+|/?))$'), <class 'jupyter_server.nbconvert.handlers.NbconvertFileHandler'>
+re.compile('/api/nbconvert$'), <class 'jupyter_server.services.nbconvert.handlers.NbconvertRootHandler'>
+re.compile('/api/security/csp-report$'), <class 'jupyter_server.services.security.handlers.CSPReportHandler'>
+re.compile('/api/sessions/(?P<session_id>\\w+-\\w+-\\w+-\\w+-\\w+)$'), <class 'jupyter_server.services.sessions.handlers.SessionHandler'>
+re.compile('/api/sessions$'), <class 'jupyter_server.services.sessions.handlers.SessionRootHandler'>
+re.compile('/api/shutdown$'), <class 'jupyter_server.services.shutdown.ShutdownHandler'>
+re.compile('/view(?P<path>(?:(?:/[^/]+)+|/?))$'), <class 'jupyter_server.view.handlers.ViewHandler'>
+re.compile('/files/(.*)$'), <class 'jupyter_server.base.handlers.AuthenticatedFileHandler'>, kwargs={'path': 'D:\\download\\jupyter-ide\\src'}
+re.compile('/.*/$'), <class 'jupyter_server.base.handlers.TrailingSlashHandler'>
+re.compile('/api$'), <class 'jupyter_server.base.handlers.APIVersionHandler'>
+re.compile('/(robots\\.txt|favicon\\.ico)$'), <class 'tornado.web.StaticFileHandler'>
+re.compile('/metrics$'), <class 'jupyter_server.base.handlers.PrometheusMetricsHandler'>
+re.compile('/?$'), <class 'jupyter_server.base.handlers.RedirectWithParams'>, kwargs={'url': '/lab', 'permanent': False}
+re.compile('(.*)$'), <class 'jupyter_server.base.handlers.Template404'>

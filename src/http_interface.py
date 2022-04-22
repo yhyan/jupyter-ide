@@ -2,6 +2,8 @@
 #coding:utf-8
 
 import os
+os.environ["HTTPIFTEST"] = "1"
+
 import sys
 from tornado.routing import Rule, PathMatches
 from tornado.web import _ApplicationRouter
@@ -60,6 +62,22 @@ def print_rule(rule: Rule):
         s += ", name=%r" % rule.name
     print(s)
 
+def print_rule2(rule: Rule):
+
+    s = "("
+    if isinstance(rule.matcher, PathMatches):
+        s += "%r" % rule.matcher.regex
+    else:
+        s += "%r" % rule.matcher
+
+    if isinstance(rule.target, _ApplicationRouter):
+        for r in rule.target.rules:
+            print_rule2(r)
+        return
+    else:
+        s += ', "%s.%s"' % (rule.target.__module__, rule.target.__name__)
+    s += "),"
+    print(s)
 
 
 def mycase1():
@@ -70,7 +88,7 @@ def mycase1():
     print(app)
     print(app.web_app.default_router)
     for rule in app.web_app.default_router.rules:
-        print_rule(rule)
+        print_rule2(rule)
   #  print(app.web_app.wildcard_router)
   #  for rule in app.web_app.wildcard_router.rules:
   #      print_rule(rule)
