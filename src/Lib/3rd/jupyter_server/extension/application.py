@@ -578,3 +578,5 @@ class ExtensionApp(JupyterApp):
             # serverapp.start()
         except NoStart:
             pass
+
+        return serverapp

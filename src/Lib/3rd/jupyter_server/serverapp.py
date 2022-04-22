@@ -2048,10 +2048,7 @@ class ServerApp(JupyterApp):
     def _signal_info(self, sig, frame):
         print(self.running_server_info())
 
-    def init_components(self):
-        """Check the components submodule, and warn if it's unclean"""
-        # TODO: this should still check, but now we use bower, not git submodule
-        pass
+
 
     def find_server_extensions(self):
         """
@@ -2330,7 +2327,6 @@ class ServerApp(JupyterApp):
         # Initialize other pieces of the server.
         self.init_resources()
         self.init_configurables()
-        self.init_components()
         self.init_webapp()
         self.init_terminals()
         self.init_signal()

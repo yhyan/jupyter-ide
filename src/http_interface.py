@@ -17,8 +17,7 @@ if len(sys.argv) == 0:
 import jupyterlab
 import jupyterlab.labapp
 
-jupyterlab.labapp.LabApp.launch_instance()
-app = jupyterlab.labapp.LabApp._instance
+app = jupyterlab.labapp.LabApp.launch_instance()
 
 
 
@@ -57,12 +56,12 @@ def print_rule(rule: Rule):
 
 
 
-def test():
+def mycase1():
     print(sys.path)
 
     print(sys.argv)
     # serverapp = app.initialize_server()
-    print(app.web_app)
+    print(app)
     print(app.web_app.default_router)
     for rule in app.web_app.default_router.rules:
         print_rule(rule)
@@ -71,7 +70,7 @@ def test():
         print_rule(rule)
     print(HERE)
 
-def testcase():
+def mycase2():
 
     req_line = "GET /lab HTTP/1.1"
     req_header = '''Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
@@ -98,4 +97,4 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 if __name__ == "__main__":
     # testcase()
-    test()
+    mycase1()
