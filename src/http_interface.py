@@ -4,6 +4,7 @@
 import os
 import sys
 from tornado.routing import Rule, PathMatches
+from tornado.web import _ApplicationRouter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, 'Lib', '3rd'))
@@ -46,7 +47,12 @@ def print_rule(rule: Rule):
     else:
         s = "%r" % rule.matcher
 
-    s += ', %s' % rule.target
+    if isinstance(rule.target, _ApplicationRouter):
+        for r in rule.target.rules:
+            print_rule(r)
+        return
+    else:
+        s += ', %s' % rule.target
 
     if rule.target_kwargs:
         s += ", kwargs=%r" % rule.target_kwargs
@@ -65,9 +71,9 @@ def mycase1():
     print(app.web_app.default_router)
     for rule in app.web_app.default_router.rules:
         print_rule(rule)
-    print(app.web_app.wildcard_router)
-    for rule in app.web_app.wildcard_router.rules:
-        print_rule(rule)
+  #  print(app.web_app.wildcard_router)
+  #  for rule in app.web_app.wildcard_router.rules:
+  #      print_rule(rule)
     print(HERE)
 
 def mycase2():
