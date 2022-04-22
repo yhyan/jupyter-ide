@@ -140,12 +140,7 @@ from jupyter_server.extension.config import ExtensionConfigManager
 from jupyter_server.traittypes import TypeFromClasses
 
 # Tolerate missing terminado package.
-try:
-    from jupyter_server.terminal import TerminalManager
-
-    terminado_available = True
-except ImportError:
-    terminado_available = False
+terminado_available = False
 
 # -----------------------------------------------------------------------------
 # Module globals
@@ -714,8 +709,6 @@ class ServerApp(JupyterApp):
         GatewaySessionManager,
         GatewayClient,
     ]
-    if terminado_available:  # Only necessary when terminado is available
-        classes.append(TerminalManager)
 
     subcommands = dict(
         list=(JupyterServerListApp, JupyterServerListApp.description.splitlines()[0]),

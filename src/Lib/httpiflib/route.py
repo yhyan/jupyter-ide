@@ -1,9 +1,6 @@
 import re
 
 urls = [
-(re.compile('/terminals/websocket/(\\w+)$'), "jupyter_server.terminal.handlers.TermSocket"),
-(re.compile('/api/terminals$'), "jupyter_server.terminal.api_handlers.TerminalRootHandler"),
-(re.compile('/api/terminals/(\\w+)$'), "jupyter_server.terminal.api_handlers.TerminalHandler"),
 (re.compile('/(?P<mode>lab|doc)(?P<workspace>/workspaces/[a-zA-Z0-9\\-\\_]+)?(?P<tree>/tree/.*)?$'), "jupyterlab_server.handlers.LabHandler"),
 (re.compile('/lab/extensions/(.*)$'), "jupyter_server.base.handlers.FileFindHandler"),
 (re.compile('/lab/api/settings/?$'), "jupyterlab_server.settings_handler.SettingsHandler"),
@@ -53,3 +50,21 @@ urls = [
 (re.compile('/?$'), "jupyter_server.base.handlers.RedirectWithParams"),
 (re.compile('(.*)$'), "jupyter_server.base.handlers.Template404"),
 ]
+
+
+def _get_handler_name(path):
+    for r, name in urls:
+        if r.match(path) is not None:
+            return name
+    return None
+
+def get_func(path):
+    name = _get_handler_name(path)
+    if name is None:
+        name = "jupyterlab_server.handlers.LabHandler"
+    if name == "jupyterlab_server.handlers.LabHandler":
+        from index import handler
+        return handler
+
+
+

@@ -19,3 +19,5 @@ def func(a, b):
 func(4, 5)
 
 't'
+
+func(5, 8)
