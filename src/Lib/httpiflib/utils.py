@@ -29,6 +29,17 @@ class Response(object):
 
 
 
+if __name__ == "__main__":
+
+    start_line = "post /lab HTTP/1.1"
+    header = "Host:www.wrox.com"
+    body = "name=Professional%20Ajax&publisher=Wiley"
+    req = Request(start_line, header, body)
+    print(req.method)
+    print(req.headers['Host'])
+
+
+
 
 
 
