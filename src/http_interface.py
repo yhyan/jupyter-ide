@@ -9,10 +9,17 @@ from tornado.routing import Rule, PathMatches
 from tornado.web import _ApplicationRouter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(HERE, 'Lib', '3rd'))
-sys.path.insert(0, os.path.join(HERE, 'Lib', 'default'))
 
 
+STATIC_PATH = os.path.join(HERE, 'share', 'jupyter', 'lab', 'static')
+print(STATIC_PATH)
+_third_path = os.path.join(HERE, 'Lib', '3rd')
+if _third_path not in sys.path:
+    sys.path.insert(0, _third_path)
+
+_default_path = os.path.join(HERE, 'Lib', 'default')
+if _default_path not in sys.path:
+    sys.path.insert(0, _default_path)
 
 if len(sys.argv) == 0:
     sys.argv.append('http_interface.py')
@@ -27,6 +34,8 @@ app = jupyterlab.labapp.LabApp.launch_instance()
 
 def http_warpper(req_line, req_header, req_body):
 
+    from httpiflib.utils import Request
+    from httpiflib.main import process_request
     from tornado.httputil import parse_request_start_line
 
     # http request:  line, header, blank, body
@@ -36,10 +45,9 @@ def http_warpper(req_line, req_header, req_body):
     print(req_header)
     print(req_body)
 
-
-
-
-    return 'a', 'b', 'c'
+    req = Request(req_line, req_header, req_body)
+    resp = process_request(req)
+    return 'a', 'b', resp.body
 
 
 def print_rule(rule: Rule):
@@ -116,9 +124,11 @@ Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'''
     req_body = ''
 
-    http_warpper(req_line, req_header, req_body)
-
+    a, b, c = http_warpper(req_line, req_header, req_body)
+    with open("a.txt", "w") as fp:
+        fp.write(c)
+    print(a, b, c)
 
 if __name__ == "__main__":
     # testcase()
-    mycase1()
+    mycase2()
