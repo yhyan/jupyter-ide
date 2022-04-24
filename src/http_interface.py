@@ -47,7 +47,7 @@ def http_warpper(req_line, req_header, req_body):
 
     req = Request(req_line, req_header, req_body)
     resp = process_request(req)
-    return 'a', 'b', resp.body
+    return resp.get_line(), resp.serialize_headers(), resp.body
 
 
 def print_rule(rule: Rule):
@@ -125,9 +125,9 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
     req_body = ''
 
     a, b, c = http_warpper(req_line, req_header, req_body)
-    with open("a.txt", "w") as fp:
-        fp.write(c)
-    print(a, b, c)
+    print(a)
+    print(b)
+    print(c)
 
 if __name__ == "__main__":
     # testcase()

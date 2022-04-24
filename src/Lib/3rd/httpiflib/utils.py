@@ -34,12 +34,9 @@ class Request(Base):
 
 class Response(Base):
 
-    def __init__(self, line, header, body):
-        if line is not None:
-            method, uri, version = parse_response_start_line(line)
-        self.method = method
-        self.uri = uri
-        self.version = version
+    def __init__(self, status_code, header, body):
+        self.status_code = status_code
+        self.version = 'HTTP/1.1'
         self.headers = header or HTTPHeaders()
         self.body = body or b""
 
@@ -52,11 +49,13 @@ class Response(Base):
             (to_bytes(key, 'ascii') + b': ' + to_bytes(value, 'latin-1'))
             for key, value in self.headers.items()
         ]
-        return b'\r\n'.join(headers)
+        return b'\r\n'.join(headers) + b'\r\n'
 
     def set_header(self, k, v):
         self.headers[k] = v
 
+    def get_line(self):
+        return '%s %s OK\r\n' % (self.version, self.status_code)
 
 
 if __name__ == "__main__":

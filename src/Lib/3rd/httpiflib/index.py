@@ -1,3 +1,4 @@
+import datetime
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 from .utils import Request, Response
@@ -66,7 +67,7 @@ _ns = {'base_url': '/',
  }
 
 def handler(req: Request):
-    resp = Response('HTTP/1.1 200 OK',
+    resp = Response(200,
                     None,
                     None
                     )
@@ -98,6 +99,8 @@ def handler(req: Request):
     template = env.get_template('index.html')
     html = template.render(page_config=page_config, **_ns)
     resp.body = html
+    resp.set_header('Date', str(datetime.datetime.now()))
+    resp.set_header('Content-Type', 'text/html; charset=UTF8')
     return resp
 
 
