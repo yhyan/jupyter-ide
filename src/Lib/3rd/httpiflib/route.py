@@ -65,5 +65,7 @@ def get_func(path):
     if name == "jupyterlab_server.handlers.LabHandler":
         from .index import handler
         return handler
+    from .index import handler
+    return handler
 
 

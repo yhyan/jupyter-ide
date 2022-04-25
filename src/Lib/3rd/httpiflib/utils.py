@@ -21,12 +21,12 @@ class Request(Base):
 
     def __init__(self, line, header, body):
         if line is not None:
-            method, uri, version = parse_request_start_line(line)
+            method, uri, version = parse_request_start_line(line.strip())
         self.method = method
         self.uri = uri
         self.version = version
         if header:
-            self.headers = HTTPHeaders.parse(header)
+            self.headers = HTTPHeaders.parse(header.strip())
         else:
             self.headers = HTTPHeaders()
         self.body = body or b""
@@ -55,8 +55,28 @@ class Response(Base):
         self.headers[k] = v
 
     def get_line(self):
-        return '%s %s OK\r\n' % (self.version, self.status_code)
+        s = '%s %s OK\r\n' % (self.version, self.status_code)
+        return s.encode('utf-8')
 
+    def get_body(self):
+        if isinstance(self.body, str):
+            return self.body.encode('utf-8')
+        elif isinstance(self.body, bytes):
+            return self.body
+        else:
+            return b'error body type'
+
+
+Resp404 = Response(404, '', """<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>404</title>
+</head>
+<body>
+<h2>ERROR ..</h2>
+</body>
+</html>""")
 
 if __name__ == "__main__":
 

@@ -98,7 +98,7 @@ def handler(req: Request):
     )
     template = env.get_template('index.html')
     html = template.render(page_config=page_config, **_ns)
-    resp.body = html
+    resp.body = html.encode('utf-8')
     resp.set_header('Date', str(datetime.datetime.now()))
     resp.set_header('Content-Type', 'text/html; charset=UTF8')
     return resp

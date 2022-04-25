@@ -5,14 +5,11 @@ import os
 os.environ["HTTPIFTEST"] = "1"
 
 import sys
-from tornado.routing import Rule, PathMatches
-from tornado.web import _ApplicationRouter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 STATIC_PATH = os.path.join(HERE, 'share', 'jupyter', 'lab', 'static')
-print(STATIC_PATH)
 _third_path = os.path.join(HERE, 'Lib', '3rd')
 if _third_path not in sys.path:
     sys.path.insert(0, _third_path)
@@ -20,6 +17,13 @@ if _third_path not in sys.path:
 _default_path = os.path.join(HERE, 'Lib', 'default')
 if _default_path not in sys.path:
     sys.path.insert(0, _default_path)
+
+if '' not in sys.path:
+    sys.path.insert(0, '')
+
+
+
+
 
 if len(sys.argv) == 0:
     sys.argv.append('http_interface.py')
@@ -32,25 +36,30 @@ app = jupyterlab.labapp.LabApp.launch_instance()
 
 
 
-def http_warpper(req_line, req_header, req_body):
+def http_wrapper(req_line, req_header, req_body):
+    try:
+        from httpiflib.utils import Request, Resp404
+        from httpiflib.main import process_request
 
-    from httpiflib.utils import Request
-    from httpiflib.main import process_request
-    from tornado.httputil import parse_request_start_line
+        # http request:  line, header, blank, body
+        # http response: line, header, blank, body
 
-    # http request:  line, header, blank, body
-    # http response: line, header, blank, body
+        # print(req_line)
+        # print(req_header)
+        # print(req_body)
+        req = Request(req_line, req_header, req_body)
+        resp = process_request(req)
+        return resp.get_line(), resp.serialize_headers(), resp.get_body()
+    except Exception as e:
+        import traceback
+        print(traceback.format_exc())
+        return Resp404.get_line(), Resp404.serialize_headers(), Resp404.get_body()
 
-    print(req_line)
-    print(req_header)
-    print(req_body)
-
-    req = Request(req_line, req_header, req_body)
-    resp = process_request(req)
-    return resp.get_line(), resp.serialize_headers(), resp.body
 
 
-def print_rule(rule: Rule):
+def print_rule(rule):
+    from tornado.routing import Rule, PathMatches
+    from tornado.web import _ApplicationRouter
 
     if isinstance(rule.matcher, PathMatches):
         s = "%r" % rule.matcher.regex
@@ -70,7 +79,9 @@ def print_rule(rule: Rule):
         s += ", name=%r" % rule.name
     print(s)
 
-def print_rule2(rule: Rule):
+def print_rule2(rule):
+    from tornado.routing import Rule, PathMatches
+    from tornado.web import _ApplicationRouter
 
     s = "("
     if isinstance(rule.matcher, PathMatches):
@@ -124,7 +135,7 @@ Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'''
     req_body = ''
 
-    a, b, c = http_warpper(req_line, req_header, req_body)
+    a, b, c = http_wrapper(req_line, req_header, req_body)
     print(a)
     print(b)
     print(c)
