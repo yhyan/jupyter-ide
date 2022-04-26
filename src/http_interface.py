@@ -28,10 +28,7 @@ if '' not in sys.path:
 if len(sys.argv) == 0:
     sys.argv.append('http_interface.py')
 
-import jupyterlab
-import jupyterlab.labapp
 
-app = jupyterlab.labapp.LabApp.launch_instance()
 
 
 
@@ -100,6 +97,11 @@ def print_rule2(rule):
 
 
 def mycase1():
+    import jupyterlab
+    import jupyterlab.labapp
+
+    app = jupyterlab.labapp.LabApp.launch_instance()
+
     print(sys.path)
 
     print(sys.argv)
@@ -139,6 +141,12 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
     print(a)
     print(b)
     print(c)
+
+    req_line = "GET /static/lab/stylexxx.js HTTP/1.1"
+    a, b, c = http_wrapper(req_line, req_header, req_body)
+    print(a)
+    print(b)
+    print(c.decode("utf-8"))
 
 if __name__ == "__main__":
     # testcase()
