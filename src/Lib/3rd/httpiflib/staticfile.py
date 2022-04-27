@@ -23,7 +23,7 @@ def handler(req: Request):
     if not os.path.exists(filepath):
         return Resp404
 
-    with open(filepath, encoding="utf-8") as fp:
+    with open(filepath, mode="rb") as fp:
         content = fp.read()
 
     resp = Response(200,
@@ -31,7 +31,7 @@ def handler(req: Request):
                     None
                     )
 
-    resp.body = content.encode('utf-8')
+    resp.body = content
     resp.set_header('Date', str(datetime.datetime.now()))
     resp.set_header('Content-Type', 'text/html; charset=UTF8')
     return resp

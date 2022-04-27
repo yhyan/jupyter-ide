@@ -123,17 +123,6 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9,zh;q=0.8,ja;q=0.7,zh-TW;q=0.6,zh-CN;q=0.5,es;q=0.4,fr;q=0.3,nl;q=0.2
 Cache-Control: max-age=0
 Connection: keep-alive
-Cookie: _xsrf=2|d172faa0|7fec5a423e058b2b960e626ae3bc76e1|1649639183; username-localhost-8891="2|1:0|10:1650271429|23:username-localhost-8891|44:MzFiMTk0NTI3YzdhNDZmOWIyOTg0NTc2NDQ2YzI3YWY=|36ca67a4b12361da7d38e2b13da8243473518407fdc6c8142d54965593e95799"; username-localhost-8889="2|1:0|10:1650277076|23:username-localhost-8889|44:OTE1MTU1NmM1YWE1NDRiYWI0NDIyNzQ3MzhiMjBmMmE=|36197456be1a35f68546723cd10c2afbc9cf4cb8fe6b93439fea2dd864c7fa23"; username-localhost-8890="2|1:0|10:1650277077|23:username-localhost-8890|44:OGM3YzkyNTA1ZmZjNGExYjliZjMyM2JlY2YxMzFhY2I=|a323e78d8b24ba4c12b9dd366116f8446f2c6f0a86f878815ad3a58476e666b5"; freePromorunningtmr=; isfreeretainend=; discount_free_trigger=; vipPromorunningtmr=; isvipretainend=; username-localhost-8888="2|1:0|10:1650522438|23:username-localhost-8888|44:YWQ2MzljYjVhYWFhNDcwZmIxNWJkZGY5ODBmYjAxZjE=|75a5db77e5c384d5fa373605ed82f66fad2dc56285df9e4d1e6631a4b8bd796c"
-Host: localhost:8888
-If-None-Match: "2c8007807ba0d4d495261ad0790de9c0c0380504"
-sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"
-sec-ch-ua-mobile: ?0
-sec-ch-ua-platform: "Windows"
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'''
     req_body = ''
 
@@ -147,6 +136,16 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
     print(a)
     print(b)
     print(c.decode("utf-8"))
+
+
+    ff = os.listdir(STATIC_PATH)
+    for f in ff:
+        print("start req %s" % f)
+        req_line = "GET /static/lab/%s HTTP/1.1" % f
+        a, b, c = http_wrapper(req_line, req_header, req_body)
+        print("finish req %s" % f)
+
+
 
 if __name__ == "__main__":
     # testcase()
